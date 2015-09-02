@@ -9,6 +9,11 @@ For this homework, you should:
 3. Submit your code as a PR on this repo.
 4. Please include your thoughts / observations / what you learned in the description of the pull request.
 
+
+## Timebox
+
+Please consider timeboxing your efforts to 2 - 3 hours max! 
+
 ## Suggested Tutorials
 
 Note: Some of these tutorials will do things a bit differently than we did in class. This is *normal* and *ok*! Backbone is a flexible framework, so there are many patterns and ways to do things. As you're working through a tutorial, think about why they might be doing things differently.
