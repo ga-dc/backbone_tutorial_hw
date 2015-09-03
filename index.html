@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="css/screen.css" />
     </head>
     <body>
+      <header>
+        <div id="filter"><label>Show me:</label></div>
+      </header>
         <div id="contacts"></div>
         <script id="contactTemplate" type="text/template">
             <img src="<%= photo %>" alt="<%= name %>" />
@@ -17,7 +20,7 @@
                 <dt class="email">Email:</dt><dd class="email"><a href="mailto:<%= email %>"><%= email %></a></dd>
             </dl>
         </script>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="bower_components/backbone/backbone-min.js"></script>
         <script src="js/app.js"></script>
