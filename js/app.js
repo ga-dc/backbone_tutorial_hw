@@ -8,13 +8,55 @@
       email: "anemail@me.com",
       type: "family"
     },
-    { name: "Contact 2", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "family" },
-    { name: "Contact 3", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "friend" },
-    { name: "Contact 4", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "colleague" },
-    { name: "Contact 5", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "family" },
-    { name: "Contact 6", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "colleague" },
-    { name: "Contact 7", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "friend" },
-    { name: "Contact 8", address: "1, a street, a town, a city, AB12 3CD", tel: "0123456789", email: "anemail@me.com", type: "family" }
+    {
+      name: "Contact 2",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "family"
+    },
+    {
+      name: "Contact 3",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "friend"
+    },
+    {
+      name: "Contact 4",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "colleague"
+    },
+    {
+      name: "Contact 5",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "family"
+    },
+    {
+      name: "Contact 6",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "colleague"
+    },
+    {
+      name: "Contact 7",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "friend"
+    },
+    {
+      name: "Contact 8",
+      address: "1, a street, a town, a city, AB12 3CD",
+      tel: "0123456789",
+      email: "anemail@me.com",
+      type: "family"
+    }
   ];
 
   // models
@@ -52,6 +94,7 @@
     initialize: function () {
       this.collection = new Directory(contacts);
       this.render();
+      this.$el.find("#filter").append(this.createSelect());
     },
 
     render: function () {
@@ -66,7 +109,29 @@
           model: item
       });
       this.$el.append(contactView.render().el);
+    },
+
+    getTypes: function () {
+      return _.uniq(this.collection.pluck("type"), false, function (type) {
+          return type.toLowerCase();
+      });
+    },
+
+    createSelect: function () {
+      var select = $("<select/>", {
+        html: "<option value='all'>All</option>"
+      });
+
+      _.each(this.getTypes(), function (item) {
+          var option = $("<option/>", {
+              value: item,
+              text: item
+          }).appendTo(select);
+      });
+
+      return select;
     }
+
   });
 
   // initialize directory view
