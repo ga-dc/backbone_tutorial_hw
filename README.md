@@ -1,3 +1,5 @@
+Hw attempted: http://code.tutsplus.com/tutorials/build-a-contacts-manager-using-backbonejs-part-1--net-24277
+
 # Backbone Tutorial HW
 
 ## Assignment
@@ -12,7 +14,7 @@ For this homework, you should:
 
 ## Timebox
 
-Please consider timeboxing your efforts to 2 - 3 hours max! 
+Please consider timeboxing your efforts to 2 - 3 hours max!
 
 ## Suggested Tutorials
 
@@ -21,4 +23,3 @@ Note: Some of these tutorials will do things a bit differently than we did in cl
 * [Todo from the 'Developing Backbone Apps' book](http://addyosmani.github.io/backbone-fundamentals/#exercise-1-todos---your-first-backbone.js-app)
 * [Another Todo (this one is very similar to the previous tutorial)](http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
 * [Building a contacts manager (tuts+)[http://code.tutsplus.com/series/getting-to-know-backbonejs--net-24408]
-
