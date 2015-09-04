@@ -1,7 +1,7 @@
 // Todo Item View
 var app = app || {};
 
-  app.TodoView = Backbone.View.extend({
+app.TodoView = Backbone.View.extend({
 
     //... is a list tag.
     tagName: 'li',
@@ -11,7 +11,9 @@ var app = app || {};
 
     // The DOM events specific to an item.
     events: {
+      'click .toggle': 'togglecompleted',
       'dblclick label': 'edit',
+      'click .destroy': 'clear',
       'keypress .edit': 'updateOnEnter',
       'blur .edit': 'close'
     },
@@ -21,13 +23,38 @@ var app = app || {};
     // app, we set a direct reference on the model for convenience.
     initialize: function() {
       this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
+      this.listenTo(this.model, 'visible', this.toggleVisible);
     },
 
-    // Re-renders the titles of the todo item.
+    // Re-render the titles of the todo item.
     render: function() {
       this.$el.html( this.template( this.model.attributes ) );
+
+      this.$el.toggleClass( 'completed', this.model.get('completed') );
+      this.toggleVisible();
+
       this.$input = this.$('.edit');
       return this;
+    },
+
+    // Toggles visibility of item
+    toggleVisible : function () {
+      this.$el.toggleClass( 'hidden',  this.isHidden());
+    },
+
+    // Determines if item should be hidden
+    isHidden : function () {
+      var isCompleted = this.model.get('completed');
+      return ( // hidden cases only
+        (!isCompleted && app.TodoFilter === 'completed')
+        || (isCompleted && app.TodoFilter === 'active')
+      );
+    },
+
+    // Toggle the `"completed"` state of the model.
+    togglecompleted: function() {
+      this.model.toggle();
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
@@ -42,6 +69,8 @@ var app = app || {};
 
       if ( value ) {
         this.model.save({ title: value });
+      } else {
+        this.clear(); // NEW
       }
 
       this.$el.removeClass('editing');
@@ -52,5 +81,10 @@ var app = app || {};
       if ( e.which === ENTER_KEY ) {
         this.close();
       }
+    },
+
+    // Remove the item, destroy the model from *localStorage* and delete its view.
+    clear: function() {
+      this.model.destroy();
     }
   });
