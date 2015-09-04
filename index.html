@@ -1,0 +1,96 @@
+var DirectoryView = Backbone.View.extend({
+    el: $("#contacts"),
+    //this view will be attached to an element that already exists on the page
+
+    initialize: function () {
+        this.collection = new Directory(contacts);
+        //creates an instance of our collection
+        this.render();
+        //makes it self rendering
+    },
+
+    render: function () {
+        var that = this;
+        //store a reference to the view to access within a callback function
+        _.each(this.collection.models, function (item) {
+          //iterate over each model in collection
+            that.renderContact(item);
+            //call the renderContact method and pass in the current item
+        }, this);
+    },
+
+    renderContact: function (item) {
+        var contactView = new ContactView({
+          //create a new instance of our contactView class - an individual contact -
+            model: item
+            //set model property to the item passed into the me
+        });
+        this.$el.append(contactView.render().el
+        //generate each individual contact within our collection by initializing the view which will dislpay all of the contacts because it is self rendering
+        );
+    }
+});
+
+var ContactsRouter = Backbone.Router.extend({
+    routes: {
+      //routes is an object literal which is were each key is a url to match and each value is a callback function where the Url is matched
+        "filter/:type": "urlFilter"
+    },
+ //this is the callback function
+    urlFilter: function (type) {
+        directory.filterType = type;
+        directory.trigger("change:filterType");
+    }
+});
+
+Backbone.history.start();
+//Backbone will now monitor the URL for hash changes
+
+addContact: function (e) {
+    e.preventDefault();
+//event handler will automatically recieve the event object, we want to prevend default behavior which would submit the form and reload the page
+    var newModel = {};
+    //create new empty object
+    $("#addContact").children("input").each(function (i, el) {
+        if ($(el).val() !== "") {
+            newModel[el.id] = $(el).val();
+        }
+        //each method will iterate over each input element in form
+        //this will also check if the field has text, if so will create a new contact otherwise leave it at default
+    });
+
+    contacts.push(formData);
+    //update our data with the new contact
+
+    if (_.indexOf(this.getTypes(), formData.type) === -1) {
+        this.collection.add(new Contact(formData));
+        this.$el.find("#filter").find("select").remove().end().append(this.createSelect());
+    } else {
+        this.collection.add(new Contact(formData));
+    }
+}
+
+this.collection.on("add", this.renderContact, this);
+//we use the on method to attach the even listener
+
+
+Notes:
+
+Backbone creates an instance of a model for each item in our original array, which are stored in our collection and rendered as an instance of a view.
+
+to listen for an event todoItem.on(event, command)
+
+url to get JSON data from
+var TodoList = Backbone.collection.extend({
+  url:/todos
+})
+
+populate collection from server
+todoList.fetch();
+
+when event function is called add or remove have to pass in the model being added or removed
+
+a collection view doesnt render any of it own HTML it delegates that responsibility to the model views
+
+render = function that isn't invoked automatically
+initialize = method that is invoked automatically
