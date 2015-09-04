@@ -123,7 +123,7 @@ label[for='toggle-all'] {
 
 .toggle-all {
 	position: absolute;
-	top: -55px;
+	top: -48px;
 	left: -12px;
 	width: 60px;
 	height: 34px;
@@ -132,7 +132,7 @@ label[for='toggle-all'] {
 }
 
 .toggle-all:before {
-	content: 'â¯';
+	content: '✓';
 	font-size: 22px;
 	color: #e6e6e6;
 	padding: 10px 27px 10px 27px;
@@ -231,7 +231,7 @@ label[for='toggle-all'] {
 }
 
 .todo-list li .destroy:after {
-	content: 'Ã—';
+	content: '✕';
 }
 
 .todo-list li:hover .destroy {
@@ -360,8 +360,6 @@ html .clear-completed:active {
 	}
 
 	.toggle-all {
-		-webkit-transform: rotate(90deg);
-		transform: rotate(90deg);
 		-webkit-appearance: none;
 		appearance: none;
 	}
