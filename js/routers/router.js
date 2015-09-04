@@ -12,8 +12,7 @@ var app = app || {};
       }
       app.TodoFilter = param || '';
 
-      // Trigger a collection filter event, causing hiding/unhiding
-      // of Todo view items
+      // Trigger a collection filter event, causing hiding/unhiding of Todo view items
       app.Todos.trigger('filter');
     }
   });
