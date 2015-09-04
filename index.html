@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <meta charset="utf-8">
+  <title>Blogrollll</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Author</th>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td><input class="form-control author-iput"></td>
+          <td><input class="form-control title-iput"></td>
+          <td><input class="form-control url-iput"></td>
+          <td><button class="btn btn-primary add-blog">Add</button></td>
+        </tr>
+      </thead>
+      <tbody class="blogs-list"></tbody>
+    </table>
+
+  </div>
+  <script type="test/template" class="blogs-list-template">
+  <td><span class="author"><%= author %></span></td>
+  <td><span class="title"><%= title %></span></td>
+  <td><span class="url"><%= url %></span></td>
+  <td>
+    <button class="btn btn-warning edit-blog">Edit</button>
+    <button class="btn btn-delete edit-blog">delete</button>
+  </td>
+
+  </script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/underscore/underscore-min.js"></script>
+  <script src="bower_components/handlebars/handlebars.min.js"></script>
+  <script src="bower_components/backbone/backbone-min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
